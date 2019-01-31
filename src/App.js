@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import { Provider } from 'react-redux'
 import { Switch } from 'react-router'
 import {Route, BrowserRouter as Router } from 'react-router-dom';
+import 'semantic-ui-css/semantic.min.css'
 
 import store from './store/configureStore'
 import './App.css';
+
 import { KanbanPage } from './pages';
 
 class App extends Component {
