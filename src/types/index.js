@@ -1,1 +1,2 @@
-// export const YOUR_TYPES = 'YOUR_TYPES';
+export const FETCH_TASKS = 'FETCH_TASKS';
+export const FETCH_TASKS_SUCCES = 'FETCH_TASKS_SUCCES'

@@ -1,11 +1,12 @@
 import firebase from 'firebase'
-require('dotenv').config()
 
 var config = {
-  apiKey: process.env.API_KEY,
-  authDomain: process.env.AUTH_DOMAIN,
-  databaseURL: process.env.DATABASE_URL,
-  projectId: process.env.PROJECT_ID
+  apiKey: process.env.REACT_APP_API_KEY,
+  databaseURL: process.env.REACT_APP_DATABASE_URL,
+  projectId: process.env.REACT_APP_PROJECT_ID
 };
-var fire = firebase.initializeApp(config);
-export default fire;
+firebase.initializeApp(config);
+export const taskRef = firebase.database().ref("todo");
+// export const taskRef = databaseRef.child("todo");
+// export const taskRef = databaseRef.child("todos");
+export default taskRef;

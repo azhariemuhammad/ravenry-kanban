@@ -1,10 +1,19 @@
 import React from 'react';
-import CardComponent from '../components/Card';
-
-import './BoardContainer.css'
 import ModalComponent from '../components/Modal';
 import { Button, Header, Image, Modal } from 'semantic-ui-react'
+
+import { connect } from "react-redux";
+import { bindActionCreators } from 'redux'; 
+
+import * as actionsTask from '../actions/taskAction'
+import CardComponent from '../components/Card';
+import './BoardContainer.css'
+
 class BoardContainer extends React.Component {
+  
+  componentWillMount() {
+    this.props.actionsTask.fetchTasks();
+  }
 
   render() {
     return (
@@ -24,4 +33,19 @@ class BoardContainer extends React.Component {
   }
 }
 
+
+const mapStateToProps = state => {
+  console.log(state.taskReducer)
+  return {
+    tasks: state.taskReducer
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    actionsTask: bindActionCreators(actionsTask, dispatch)
+  }
+}
+
+BoardContainer = connect(mapStateToProps, mapDispatchToProps)(BoardContainer)
 export default BoardContainer
