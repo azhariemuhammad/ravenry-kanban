@@ -5,19 +5,17 @@ import {Route, BrowserRouter as Router } from 'react-router-dom';
 
 import store from './store/configureStore'
 import './App.css';
-// import { OverviewPage } from './pages/overview-page';
-// import { OfficePage } from './pages/office-page';
+import { KanbanPage } from './pages';
 
 class App extends Component {
   render() {
     return (
       <Provider store={store}>
         <div className="App">
-          <div className="wrapper app">
+          <div>
             <Router>
               <Switch>
-                {/* <Route exact path="/" component={OverviewPage}/> */}
-                {/* <Route path="/company/:id/office" component={OfficePage}/> */}
+                <Route exact path="/" component={KanbanPage}/>
               </Switch>
             </Router>
           </div>

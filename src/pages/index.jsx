@@ -1,10 +1,12 @@
 import React from "react";
 import { Page } from './page'
+import BoardContainer from "../containers/BoardContainer";
 
-export const OfficePage = props => {
+
+export const KanbanPage = props => {
   return (
     <Page>
-      {/* <OfficeContainer {...props} /> */}
+      <BoardContainer {...props} />
     </Page>
   );
 };

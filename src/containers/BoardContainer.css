@@ -1,0 +1,9 @@
+.board {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.wrapper-board {
+  display: flex;
+  justify-content: space-between;
+}
