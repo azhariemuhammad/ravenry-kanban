@@ -1,2 +1,3 @@
 export const FETCH_TASKS = 'FETCH_TASKS';
 export const FETCH_TASKS_SUCCES = 'FETCH_TASKS_SUCCES'
+export const ADD_NEW_TASK = 'ADD_NEW_TASK'

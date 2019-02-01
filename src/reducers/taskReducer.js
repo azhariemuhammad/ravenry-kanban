@@ -9,8 +9,9 @@ function taskReducer (state = initialState, action) {
   console.log(action.payload)
   switch (action.type) {
     case types.FETCH_TASKS: 
-    console.log(action.payload)
       return { ...state, tasks: action.payload}
+    case types.ADD_NEW_TASK:
+      return state
     default:
       return state;
   }

@@ -26,3 +26,19 @@ export const fetchTasks = () => async dispatch => {
       });
     });
 };
+
+export const addTask = (task) => async dispatch => {
+  console.log(task)
+  const newData = {
+    title: task.title,
+    desc: task.desc,
+    point: task.point,
+    assignedTo: task.assignedTo
+  }
+  const newTaskKey = taskRef.push().key
+  console.log(task)
+  taskRef.push(newData)
+  dispatch({
+    type: types.ADD_NEW_TASK
+  })
+}

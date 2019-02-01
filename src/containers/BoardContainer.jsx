@@ -15,18 +15,23 @@ class BoardContainer extends React.Component {
     this.props.actionsTask.fetchTasks();
   }
 
+  handleAddTask(state) {
+    console.log('hello', state)
+    this.props.actionsTask.addTask(state)
+  }
+
   render() {
     return (
       <div className="board">
         <p>FireKanban</p>
         <Modal trigger={<Button>Add</Button>} centered={false}>
-          <ModalComponent />
+          <ModalComponent handleOnSubmitTask={newState => this.handleAddTask(newState)} />
         </Modal>
         <div className="wrapper-board">
-          <CardComponent title="Back-log" />
-          <CardComponent title="To-do" />
+          <CardComponent title="Back-log" tasks={this.props.tasks} />
+          {/* <CardComponent title="To-do" />
           <CardComponent title="Doing" />
-          <CardComponent title="Done" />
+          <CardComponent title="Done" /> */}
         </div>
       </div>
     )
