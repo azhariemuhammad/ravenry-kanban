@@ -15,9 +15,8 @@ class BoardContainer extends React.Component {
     this.props.actionsTask.fetchTasks();
   }
 
-  handleAddTask(state) {
-    console.log('hello', state)
-    this.props.actionsTask.addTask(state)
+  handleAddTask(state, ref) {
+    this.props.actionsTask.addTask(state, ref)
   }
 
   render() {
@@ -25,10 +24,14 @@ class BoardContainer extends React.Component {
       <div className="board">
         <p>FireKanban</p>
         <Modal trigger={<Button>Add</Button>} centered={false}>
-          <ModalComponent handleOnSubmitTask={newState => this.handleAddTask(newState)} />
+          <ModalComponent handleOnSubmitTask={newState => this.handleAddTask(newState, 'todo')} />
         </Modal>
         <div className="wrapper-board">
-          <CardComponent title="Back-log" tasks={this.props.tasks} />
+          <CardComponent 
+            title="Back-log" 
+            tasks={this.props.tasks}
+            handleOnSubmitTask={newState => this.handleAddTask(newState, 'doing')}
+          />
           {/* <CardComponent title="To-do" />
           <CardComponent title="Doing" />
           <CardComponent title="Done" /> */}

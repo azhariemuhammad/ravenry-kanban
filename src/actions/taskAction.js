@@ -9,17 +9,8 @@ export const fetchTasksSucces = (tasks) => {
   }
 }
 
-// export const fetchTasks = () => {
-//   return (dispatch) => {
-//     taskRef.on('value', snapshot => {
-//       console.log('ini snap', snapshot.val())
-//       dispatch(fetchTasksSucces(snapshot.val()))
-//     })
-//   }
-// }
-
 export const fetchTasks = () => async dispatch => {
-    taskRef.on("value", snapshot => {
+    taskRef.child('todo').on("value", snapshot => {
       dispatch({
         type: types.FETCH_TASKS,
         payload: snapshot.val()
@@ -28,16 +19,13 @@ export const fetchTasks = () => async dispatch => {
 };
 
 export const addTask = (task) => async dispatch => {
-  console.log(task)
   const newData = {
     title: task.title,
     desc: task.desc,
     point: task.point,
     assignedTo: task.assignedTo
   }
-  const newTaskKey = taskRef.push().key
-  console.log(task)
-  taskRef.push(newData)
+  taskRef.child('todo').push(newData)
   dispatch({
     type: types.ADD_NEW_TASK
   })

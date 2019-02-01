@@ -6,7 +6,7 @@ var config = {
   projectId: process.env.REACT_APP_PROJECT_ID
 };
 firebase.initializeApp(config);
-export const taskRef = firebase.database().ref("todo");
+export const taskRef = firebase.database().ref();
 // export const taskRef = databaseRef.child("todo");
 // export const taskRef = databaseRef.child("todos");
 export default taskRef;

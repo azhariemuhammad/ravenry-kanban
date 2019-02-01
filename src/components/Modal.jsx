@@ -28,7 +28,7 @@ class ModalComponent extends React.Component {
 
   handleInput(event, property) {
     const newState = event.target.value  
-    console.log(newState)
+
     if (property === 'title') {
       this.setState({ title: newState })
     }
