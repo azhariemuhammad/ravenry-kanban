@@ -7,34 +7,39 @@ import { bindActionCreators } from 'redux';
 
 import * as actionsTask from '../actions/taskAction'
 import CardComponent from '../components/Card';
+import BacklogContainer from './BacklogContainer'
 import './BoardContainer.css'
+import { TodoContainer } from './TodoContainer';
 
 class BoardContainer extends React.Component {
-  
+  constructor(props) {
+    super(props)
+    this.handleAddTask = this.handleAddTask.bind(this)
+  }
   componentWillMount() {
     this.props.actionsTask.fetchTasks();
   }
 
-  handleAddTask(state, ref) {
-    this.props.actionsTask.addTask(state, ref)
+  handleAddTask(state) {
+    console.log(state)
+    this.props.actionsTask.addTask(state)
   }
 
   render() {
+    console.log(this.props.tasks.tasks)
     return (
       <div className="board">
         <p>FireKanban</p>
         <Modal trigger={<Button>Add</Button>} centered={false}>
-          <ModalComponent handleOnSubmitTask={newState => this.handleAddTask(newState, 'todo')} />
+          <ModalComponent handleOnSubmitTask={newState => this.handleAddTask(newState)} />
         </Modal>
         <div className="wrapper-board">
-          <CardComponent 
-            title="Back-log" 
-            tasks={this.props.tasks}
-            handleOnSubmitTask={newState => this.handleAddTask(newState, 'doing')}
-          />
-          {/* <CardComponent title="To-do" />
-          <CardComponent title="Doing" />
-          <CardComponent title="Done" /> */}
+        <BacklogContainer
+          tasks={this.props.tasks.tasks}
+         />
+        <TodoContainer
+          todo={this.props.tasks.todo}
+        />
         </div>
       </div>
     )

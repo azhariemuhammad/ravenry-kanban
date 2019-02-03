@@ -1,5 +1,6 @@
 import * as types from '../types'
-import {taskRef}  from '../fire'
+
+const uuidv1 = require('uuid/v1');
 
 export const fetchTasksSucces = (tasks) => {
   console.log('masuk sinin')
@@ -9,24 +10,52 @@ export const fetchTasksSucces = (tasks) => {
   }
 }
 
-export const fetchTasks = () => async dispatch => {
-    taskRef.child('todo').on("value", snapshot => {
-      dispatch({
-        type: types.FETCH_TASKS,
-        payload: snapshot.val()
-      });
-    });
+export const fetchTasks = () => {
+  return {
+    type: types.FETCH_TASKS,
+  }
 };
 
-export const addTask = (task) => async dispatch => {
+export const addTask = (task) => {
+  console.log(task.title)
   const newData = {
+    id: uuidv1(),
     title: task.title,
     desc: task.desc,
     point: task.point,
-    assignedTo: task.assignedTo
+    assignedTo: task.assignedTo,
+    backlog: true,
+    todo: false
   }
-  taskRef.child('todo').push(newData)
-  dispatch({
-    type: types.ADD_NEW_TASK
+  return {
+    type: types.ADD_NEW_TASK,
+    payload: newData
+  }
+    
+}
+
+export const updateTaskToTodo = (tasks, id) => {
+  console.log(tasks, id)
+  var temp = tasks.filter(item => {
+    return item.id == id
   })
+  console.log(temp)
+  return (dispatch, getState) => {
+    dispatch(moveTask(temp))
+    dispatch(removeItemOnTask(id))
+  }
+}
+
+export const moveTask = (item) => {
+  return {
+    type: types.UPDATE_TASK_TO_TODO,
+    payload: item
+  }
+}
+
+export const removeItemOnTask = (id) => {
+  return {
+    type: types.REMOVE_ITEM_ON_TASK,
+    payload: id
+  }
 }

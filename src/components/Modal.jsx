@@ -26,7 +26,8 @@ class ModalComponent extends React.Component {
     };
   }
 
-  handleInput(event, property) {
+  handleInput(property, event) {
+    event.preventDefault()
     const newState = event.target.value  
 
     if (property === 'title') {
@@ -58,20 +59,20 @@ class ModalComponent extends React.Component {
                 <Form>
                   <Form.Field>
                     <label>Title</label>
-                    <Input placeholder='Title' onChange={(e) => this.handleInput(e, 'title')}/>
+                    <Input placeholder='Title' onChange={(e) => this.handleInput('title', e)}/>
                   </Form.Field>
                   <Divider />
                   <Form.Field>
                     <label>Description</label>
-                    <Input placeholder='Description' onChange={(e) => this.handleInput(e, 'desc')} />
+                    <Input placeholder='Description' onChange={(e) => this.handleInput('desc', e)} />
                   </Form.Field>
                   <Form.Field>
                     <label>Point</label>
-                      <Input placeholder='Point' onChange={(e) => this.handleInput(e, 'point')} />
+                      <Input placeholder='Point' onChange={(e) => this.handleInput('point', e)} />
                   </Form.Field>
                   <Form.Field>
                     <label>Assigned To</label>
-                    <Input placeholder='Assigned To' onChange={(e) => this.handleInput(e, 'assignedTo')} />
+                    <Input placeholder='Assigned To' onChange={(e) => this.handleInput('assignedTo', e)} />
                   </Form.Field>
                   <Button type='submit' onClick={(e) => this.handleOnSubmit(e)}>Submit</Button>
                 </Form>
