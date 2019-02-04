@@ -1,6 +1,7 @@
 import React from 'react';
 
 import './Card.css'
+import { Button, Icon } from 'semantic-ui-react';
 
 let temp = []
 
@@ -15,29 +16,47 @@ class CardComponent extends React.Component {
     this.props.callBackParent(id)
   }
 
+  handleRemove(id) {
+    this.props.remove(id)
+  }
+
   render() {
     const arrTask = this.props.tasks
     return (
       <div className="card">
-        <div className="card-header">
+        <div className="card-header" style={this.props.headerStyle}>
             <h2>{ this.props.title }</h2>
           </div>
           <div className="card-content">
           <ul>
             {
               (arrTask) && arrTask.map((item, key) => {
-                return (
-                  <div className="task" key={key}>
-                    <div className="task-title">
-                      <p>{item.title}</p>
+                  const even = (key % 2)
+                  return (
+                    <div className='divider'>
+                      <div className="task"
+                        style={even ? style : null}
+                        key={key} >
+                        <div className="task-title">
+                          <span className="flex-around">
+                            <p>{item.title}</p>
+                            <Icon 
+                              name="close" 
+                              onClick={(e) => this.handleRemove(item.id, e)}
+                            />
+                          </span>
+                        </div>
+                        <div className="task-desc">
+                          <p>Point: {item.point}</p>
+                          <p>Assigned To: {item.assignedTo}</p>
+                        </div>
+                          {(this.props.move) && 
+                            <Button primary onClick={(e) => this.handleOnClick(item.id, e)}>Move To {this.props.move}</Button>
+                          }
+                        </div>
                     </div>
-                    <div className="task-desc">
-                      <p>Point: {item.point}</p>
-                      <p>Assigned To: {item.assignedTo}</p>
-                    </div>
-                    <button onClick={(e) => this.handleOnClick(item.id, e)}>Move To {this.props.move}</button>
-                  </div>
-                )
+                    
+                  )
               })
             }
           </ul>
@@ -46,6 +65,10 @@ class CardComponent extends React.Component {
       
     )
   }
+}
+
+const style = {
+  backgroundColor: '#dddddd'
 }
 
 export default CardComponent

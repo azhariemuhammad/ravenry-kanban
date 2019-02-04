@@ -19,7 +19,6 @@ const initialState = {
 }
 
 function taskReducer (state = initialState, {type, payload}) {
-  console.log(payload)
   switch (type) {
     case types.FETCH_TASKS: 
       return state
@@ -29,6 +28,14 @@ function taskReducer (state = initialState, {type, payload}) {
       return {...state, todo: [...state.todo, ...payload]}
     case types.REMOVE_ITEM_ON_TASK:
       return {...state, tasks: state.tasks.filter(({id}) => id !== payload)}
+    case types.UPDATE_TODO_TO_ACTIVE:
+      return {...state, active: [...state.active, ...payload]}
+    case types.REMOVE_ITEM_ON_TODO:
+      return {...state, todo: state.todo.filter(({id}) => id !== payload)}
+    case types.UPDATE_ACTIVE_TO_CLOSED:
+      return {...state, closed: [...state.closed, ...payload]}
+    case types.REMOVE_ITEM_ON_ACTIVE:
+      return {...state, active: state.active.filter(({id}) => id !== payload)}
     default:
       return state;
   }

@@ -2,14 +2,6 @@ import * as types from '../types'
 
 const uuidv1 = require('uuid/v1');
 
-export const fetchTasksSucces = (tasks) => {
-  console.log('masuk sinin')
-  return {
-    type: types.FETCH_TASKS_SUCCES,
-    payload: {tasks}
-  }
-}
-
 export const fetchTasks = () => {
   return {
     type: types.FETCH_TASKS,
@@ -37,9 +29,8 @@ export const addTask = (task) => {
 export const updateTaskToTodo = (tasks, id) => {
   console.log(tasks, id)
   var temp = tasks.filter(item => {
-    return item.id == id
+    return item.id === id
   })
-  console.log(temp)
   return (dispatch, getState) => {
     dispatch(moveTask(temp))
     dispatch(removeItemOnTask(id))

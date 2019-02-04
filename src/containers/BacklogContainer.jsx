@@ -6,39 +6,28 @@ import { bindActionCreators } from 'redux';
 
 import * as actionsTask from '../actions/taskAction'
 
-class BacklogContainer extends React.Component {
-  constructor(props) {
-    super(props)
-    
+export const BacklogContainer = (props) => {
+
+  const handleUpdateTask = (id) => {
+    props.actionsTask.updateTaskToTodo(props.tasks, id)
   }
 
-  handleUpdateTask(id) {
-    console.log('uooo', id)
-    console.log(this.props.tasks)
-    this.props.actionsTask.updateTaskToTodo(this.props.tasks, id)
+  const handleRemoveTask = (id) => {
+    props.actionsTask.removeItemOnTask(id)
   }
-
-  render() {
-    console.log(this.props.tasks)
-    return (
+  
+  return (
       <CardComponent 
         title={'Backlog'}
         move={'Todo'}
-        tasks={this.props.tasks}
-        callBackParent={id => this.handleUpdateTask(id)}
+        headerStyle={headerStyle}
+        tasks={props.tasks}
+        callBackParent={id => handleUpdateTask(id)}
+        remove={id => handleRemoveTask(id)}
       />
-    )
-  }
+  )
 }
 
-
-const mapDispatchToProps = dispatch => {
-  return {
-    actionsTask: bindActionCreators(actionsTask, dispatch)
-  }
-}
-
-
-
-BacklogContainer = connect(null, mapDispatchToProps)(BacklogContainer)
-export default BacklogContainer
+const headerStyle = {
+  backgroundColor: '#e0b5a6'
+};

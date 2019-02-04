@@ -3,22 +3,30 @@ import React from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux'; 
 
-import * as actionsTask from '../actions/taskAction'
+import * as actionsTodo from '../actions/todoAction'
 import CardComponent from '../components/Card';
 export const TodoContainer = (props) => {
 
-  const handleUpdateTodo = (id) => {
-    console.log('uooo', id)
-    console.log(this.props.todo)
-    // this.props.actionsTask.updateTaskToTodo(this.props.tasks, id)
+  const updateTodoToActive = (id) => {
+    props.actionsTodo.updateTodoToActive(props.todo, id)
   }
-  console.log(props.todo)
+
+  const handleRemoveTodo = (id) => {
+    props.actionsTodo.removeItemOnTodo(id)
+  }
+
   return (
     <CardComponent 
       title={'Todo'}
       move={'Active'}
+      headerStyle={headerStyle}
       tasks={props.todo}
-      callBackParent={id => this.handleUpdateTodo(id)}
+      callBackParent={id => updateTodoToActive(id)}
+      remove={id => handleRemoveTodo(id)}
     />
   )
 }
+
+const headerStyle = {
+  backgroundColor: '#72789f'
+};
