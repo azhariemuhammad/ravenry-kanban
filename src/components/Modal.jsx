@@ -9,8 +9,6 @@ import {
   Label
 } from 'semantic-ui-react'
 
-import './Modal.css'
-
 const handleOnSubmit = (e, {props}) => {
   e.preventDefault()
   props.handleOnSubmitTask()
@@ -52,8 +50,8 @@ class ModalComponent extends React.Component {
 
   render() {
     return (
-      <div>
-        <Modal.Header>Add New Task</Modal.Header>
+      <div style={modal}>
+        <Modal.Header style={modalHeader}>Add New Task</Modal.Header>
             <Modal.Content>
               <Modal.Description>
                 <Form>
@@ -81,6 +79,14 @@ class ModalComponent extends React.Component {
       </div>
     )
   }
+}
+
+const modal = {
+  padding: '8px'
+}
+
+const modalHeader = {
+  marginBottom: '16px'
 }
 
 export default ModalComponent

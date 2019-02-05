@@ -8,13 +8,14 @@ import { bindActionCreators } from 'redux';
 import * as actionsTask from '../actions/taskAction'
 import * as actionsTodo from '../actions/todoAction'
 import * as actionsActive from '../actions/activeAction'
+import * as actionsClosed from '../actions/closedAction'
 
 import CardComponent from '../components/Card';
 import { BacklogContainer } from './BacklogContainer'
-import './BoardContainer.css'
 import { TodoContainer } from './TodoContainer';
 import { ActiveContainer } from './ActiveContainer';
 import { ClosedContainer } from './ClosedContainer';
+import './BoardContainer.css'
 
 class BoardContainer extends React.Component {
   componentWillMount() {
@@ -29,7 +30,7 @@ class BoardContainer extends React.Component {
     return (
       <div className="board">
         <div className="board-header flex-around">
-          <p>FireKanban</p>
+          <h1>FireKanban</h1>
           <Modal trigger={<Button>Add</Button>} centered={false}>
             <ModalComponent handleOnSubmitTask={newState => this.handleAddTask(newState)} />
           </Modal>
@@ -49,6 +50,7 @@ class BoardContainer extends React.Component {
           />
           <ClosedContainer
             closed={this.props.tasks.closed}
+            actionsClosed={this.props.actionsClosed}
           />
         </div>
       </div>
@@ -58,7 +60,6 @@ class BoardContainer extends React.Component {
 
 
 const mapStateToProps = state => {
-  console.log(state.taskReducer)
   return {
     tasks: state.taskReducer,
   };
@@ -69,6 +70,7 @@ const mapDispatchToProps = dispatch => {
     actionsTask: bindActionCreators(actionsTask, dispatch),
     actionsTodo: bindActionCreators(actionsTodo, dispatch),
     actionsActive: bindActionCreators(actionsActive, dispatch),
+    actionsClosed: bindActionCreators(actionsClosed, dispatch),
   }
 }
 

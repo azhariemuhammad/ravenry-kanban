@@ -23,8 +23,11 @@ h2 {
 }
 
 .task-title {
-  height: 30px;
+  height: auto;
   border: 1px solid lightgrey;
+}
+.task-action {
+  margin-top: 40px;
 }
 .divider {
   margin-bottom: 16px;

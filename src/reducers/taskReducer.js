@@ -36,6 +36,8 @@ function taskReducer (state = initialState, {type, payload}) {
       return {...state, closed: [...state.closed, ...payload]}
     case types.REMOVE_ITEM_ON_ACTIVE:
       return {...state, active: state.active.filter(({id}) => id !== payload)}
+    case types.REMOVE_ITEM_ON_CLOSED:
+      return {...state, closed: state.closed.filter(({id}) => id !== payload)}
     default:
       return state;
   }

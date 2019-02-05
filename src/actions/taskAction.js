@@ -9,15 +9,12 @@ export const fetchTasks = () => {
 };
 
 export const addTask = (task) => {
-  console.log(task.title)
   const newData = {
     id: uuidv1(),
     title: task.title,
     desc: task.desc,
     point: task.point,
     assignedTo: task.assignedTo,
-    backlog: true,
-    todo: false
   }
   return {
     type: types.ADD_NEW_TASK,
@@ -27,7 +24,6 @@ export const addTask = (task) => {
 }
 
 export const updateTaskToTodo = (tasks, id) => {
-  console.log(tasks, id)
   var temp = tasks.filter(item => {
     return item.id === id
   })

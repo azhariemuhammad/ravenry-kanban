@@ -1,7 +1,7 @@
 import React from 'react';
 
 import './Card.css'
-import { Button, Icon } from 'semantic-ui-react';
+import { Button, Icon, Modal } from 'semantic-ui-react';
 
 let temp = []
 
@@ -12,6 +12,7 @@ class CardComponent extends React.Component {
   }
 
   handleOnClick(id, e) {
+    e.preventDefault();
     console.log('fooo', id)
     this.props.callBackParent(id)
   }
@@ -39,7 +40,7 @@ class CardComponent extends React.Component {
                         key={key} >
                         <div className="task-title">
                           <span className="flex-around">
-                            <p>{item.title}</p>
+                            <h3>{item.title}</h3>
                             <Icon 
                               name="close" 
                               onClick={(e) => this.handleRemove(item.id, e)}
@@ -47,15 +48,17 @@ class CardComponent extends React.Component {
                           </span>
                         </div>
                         <div className="task-desc">
+                          <p>{item.desc}</p>
                           <p>Point: {item.point}</p>
                           <p>Assigned To: {item.assignedTo}</p>
                         </div>
-                          {(this.props.move) && 
-                            <Button primary onClick={(e) => this.handleOnClick(item.id, e)}>Move To {this.props.move}</Button>
-                          }
-                        </div>
-                    </div>
-                    
+                        <div className="task-action">
+                            {(this.props.move) && 
+                                <a href='#' onClick={(e) => this.handleOnClick(item.id, e)}>Move To {this.props.move}</a>
+                              }
+                          </div>
+                      </div>
+                    </div> 
                   )
               })
             }
