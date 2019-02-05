@@ -1,6 +1,6 @@
 import React from 'react';
 import ModalComponent from '../components/Modal';
-import { Button, Header, Image, Modal } from 'semantic-ui-react'
+import { Button, Modal } from 'semantic-ui-react'
 
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux'; 
@@ -10,7 +10,6 @@ import * as actionsTodo from '../actions/todoAction'
 import * as actionsActive from '../actions/activeAction'
 import * as actionsClosed from '../actions/closedAction'
 
-import CardComponent from '../components/Card';
 import { BacklogContainer } from './BacklogContainer'
 import { TodoContainer } from './TodoContainer';
 import { ActiveContainer } from './ActiveContainer';
@@ -31,7 +30,7 @@ class BoardContainer extends React.Component {
       <div className="board">
         <div className="board-header flex-around">
           <h1>FireKanban</h1>
-          <Modal trigger={<Button>Add</Button>} centered={false}>
+          <Modal trigger={<Button primary>Add</Button>} centered={false}>
             <ModalComponent handleOnSubmitTask={newState => this.handleAddTask(newState)} />
           </Modal>
         </div>

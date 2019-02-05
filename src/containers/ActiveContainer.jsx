@@ -7,6 +7,10 @@ export const ActiveContainer = (props) => {
     props.actionsActive.updateActiveToClosed(props.active, id)
   }
 
+  const handleEditActive = (newState) => {
+    props.actionsActive.editActive(newState)
+  }
+
   const handleRemoveActive = (id) => {
     props.actionsActive.removeItemOnActive(id)
   }
@@ -18,7 +22,8 @@ export const ActiveContainer = (props) => {
       headerStyle={headerStyle}
       tasks={props.active}
       callBackParent={id => handleUpdateActive(id)}
-      remove={id => handleRemoveActive(id)}
+      editTask={newState => handleEditActive(newState)}
+      removeTask={id => handleRemoveActive(id)}
     />
   )
 }

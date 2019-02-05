@@ -6,3 +6,17 @@ export const removeItemOnClosed = (id) => {
     payload: id
   }
 }
+
+export const editClosed = (task) => {
+  const newData = {
+    id: task.id,
+    title: task.title,
+    desc: task.desc,
+    point: task.point,
+    assignedTo: task.assignedTo,
+  }
+  return {
+    type: types.EDIT_CLOSED,
+    payload: newData
+  }
+}

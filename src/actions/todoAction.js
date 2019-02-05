@@ -10,6 +10,21 @@ export const updateTodoToActive = (tasks, id) => {
   }
 }
 
+
+export const editTodo = (task) => {
+  const newData = {
+    id: task.id,
+    title: task.title,
+    desc: task.desc,
+    point: task.point,
+    assignedTo: task.assignedTo,
+  }
+  return {
+    type: types.EDIT_TODO,
+    payload: newData
+  }
+}
+
 export const moveTodo = (item) => {
   return {
     type: types.UPDATE_TODO_TO_ACTIVE,

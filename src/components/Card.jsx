@@ -2,19 +2,12 @@ import React from 'react';
 
 import './Card.css'
 import ModalComponent from './Modal';
-import { Button, Icon, Modal } from 'semantic-ui-react';
-
-let temp = []
+import {Icon, Modal } from 'semantic-ui-react';
 
 class CardComponent extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleOnClick = this.handleOnClick.bind(this)
-  }
 
   handleOnClick(id, e) {
     e.preventDefault();
-    console.log('fooo', id)
     this.props.callBackParent(id)
   }
 
@@ -39,7 +32,7 @@ class CardComponent extends React.Component {
               (arrTask) && arrTask.map((item, key) => {
                   const even = (key % 2)
                   return (
-                    <div className='divider'>
+                    <div className='divider' key={key}>
                       <div className="task"
                         style={even ? style : null}
                         key={key} >

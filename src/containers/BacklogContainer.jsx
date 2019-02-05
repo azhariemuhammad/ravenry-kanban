@@ -1,10 +1,6 @@
 import React from 'react';
+
 import CardComponent from '../components/Card'
-
-import { connect } from "react-redux";
-import { bindActionCreators } from 'redux'; 
-
-import * as actionsTask from '../actions/taskAction'
 
 export const BacklogContainer = (props) => {
 

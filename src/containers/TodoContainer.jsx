@@ -1,14 +1,15 @@
 import React from 'react';
 
-import { connect } from "react-redux";
-import { bindActionCreators } from 'redux'; 
-
-import * as actionsTodo from '../actions/todoAction'
 import CardComponent from '../components/Card';
+
 export const TodoContainer = (props) => {
 
   const updateTodoToActive = (id) => {
     props.actionsTodo.updateTodoToActive(props.todo, id)
+  }
+  
+  const handleEditTodo = (newState) => {
+    props.actionsTodo.editTodo(newState)
   }
 
   const handleRemoveTodo = (id) => {
@@ -22,7 +23,8 @@ export const TodoContainer = (props) => {
       headerStyle={headerStyle}
       tasks={props.todo}
       callBackParent={id => updateTodoToActive(id)}
-      remove={id => handleRemoveTodo(id)}
+      editTask={newState => handleEditTodo(newState)}
+      removeTask={id => handleRemoveTodo(id)}
     />
   )
 }

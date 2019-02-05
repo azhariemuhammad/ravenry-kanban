@@ -10,6 +10,20 @@ export const updateActiveToClosed = (tasks, id) => {
   }
 }
 
+export const editActive = (task) => {
+  const newData = {
+    id: task.id,
+    title: task.title,
+    desc: task.desc,
+    point: task.point,
+    assignedTo: task.assignedTo,
+  }
+  return {
+    type: types.EDIT_ACTIVE,
+    payload: newData
+  }
+}
+
 export const moveActive = (item) => {
   return {
     type: types.UPDATE_ACTIVE_TO_CLOSED,

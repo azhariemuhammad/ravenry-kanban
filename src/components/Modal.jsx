@@ -1,18 +1,13 @@
 import React from 'react';
 import { 
   Button,
-  Header,
   Input,
   Modal,
   Divider,
   Form,
-  Label
+  Icon
 } from 'semantic-ui-react'
 
-const handleOnSubmit = (e, {props}) => {
-  e.preventDefault()
-  props.handleOnSubmitTask()
-}
 class ModalComponent extends React.Component {
   constructor(props) {
     super(props);
@@ -59,14 +54,17 @@ class ModalComponent extends React.Component {
   handleOnSubmit(e) {
     e.preventDefault()
     this.props.handleOnSubmitTask(this.state)
+    alert('success add')
   }
 
   handleOnEdit(e) {
     e.preventDefault()
     this.props.handleOnEditTask(this.state)
+    alert('success edit')
   }
 
   handleRemoveTask(id, e) {
+    alert('success remove')
     e.preventDefault()
     this.props.removeTask(id)
   }
@@ -89,7 +87,12 @@ class ModalComponent extends React.Component {
                   </Form.Field>
                   <Form.Field>
                     <label>Point</label>
-                      <Input placeholder='Point' value={this.state.point} onChange={(e) => this.handleInput('point', e)} />
+                      <select value={this.state.point} onChange={(e) => this.handleInput('point', e)}>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                      </select>
                   </Form.Field>
                   <Form.Field>
                     <label>Assigned To</label>
@@ -98,8 +101,8 @@ class ModalComponent extends React.Component {
                   {(!this.state.onEdit) ? <Button type='submit' onClick={(e) => this.handleOnSubmit(e)}>Submit</Button>
                     : 
                     <div className="flex-around">  
-                      <Button type='submit' onClick={(e) => this.handleOnEdit(e)}>Edit</Button>
-                      <Button type='submit' onClick={(e) => this.handleRemoveTask(this.state.id, e)}>Remove</Button>
+                      <Button primary type='submit' onClick={(e) => this.handleOnEdit(e)}>Edit</Button>
+                      <Button  color='red' type='submit' onClick={(e) => this.handleRemoveTask(this.state.id, e)}><Icon name='remove'/></Button>
                     </div>
                   }
                   
