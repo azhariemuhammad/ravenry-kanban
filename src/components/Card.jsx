@@ -1,6 +1,7 @@
 import React from 'react';
 
 import './Card.css'
+import ModalComponent from './Modal';
 import { Button, Icon, Modal } from 'semantic-ui-react';
 
 let temp = []
@@ -18,7 +19,11 @@ class CardComponent extends React.Component {
   }
 
   handleRemove(id) {
-    this.props.remove(id)
+    this.props.removeTask(id)
+  }
+
+  handleOnEditTask(newState) {
+    this.props.editTask(newState)
   }
 
   render() {
@@ -41,10 +46,17 @@ class CardComponent extends React.Component {
                         <div className="task-title">
                           <span className="flex-around">
                             <h3>{item.title}</h3>
-                            <Icon 
-                              name="close" 
-                              onClick={(e) => this.handleRemove(item.id, e)}
-                            />
+                            <Modal trigger={
+                              <Icon 
+                                name="bars"
+                              />} centered={false}>
+                              <ModalComponent 
+                                handleOnEditTask={newState => this.handleOnEditTask(newState)} 
+                                editedTask={item}
+                                removeTask={id => this.handleRemove(id)}
+                              />
+                            </Modal>
+                            
                           </span>
                         </div>
                         <div className="task-desc">

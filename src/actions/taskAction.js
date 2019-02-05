@@ -23,6 +23,20 @@ export const addTask = (task) => {
     
 }
 
+export const editTask = (task) => {
+  const newData = {
+    id: task.id,
+    title: task.title,
+    desc: task.desc,
+    point: task.point,
+    assignedTo: task.assignedTo,
+  }
+  return {
+    type: types.EDIT_TASK,
+    payload: newData
+  }
+}
+
 export const updateTaskToTodo = (tasks, id) => {
   var temp = tasks.filter(item => {
     return item.id === id

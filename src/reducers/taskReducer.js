@@ -24,6 +24,13 @@ function taskReducer (state = initialState, {type, payload}) {
       return state
     case types.ADD_NEW_TASK:
       return {...state, tasks: [...state.tasks, payload]}
+      case types.EDIT_TASK:
+      return {...state, tasks: state.tasks.map(item => {
+        if (item.id !== payload.id) {
+          return item
+        }
+        return {...item, ...payload}
+      })}
     case types.UPDATE_TASK_TO_TODO:
       return {...state, todo: [...state.todo, ...payload]}
     case types.REMOVE_ITEM_ON_TASK:

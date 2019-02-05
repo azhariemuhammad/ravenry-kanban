@@ -12,6 +12,10 @@ export const BacklogContainer = (props) => {
     props.actionsTask.updateTaskToTodo(props.tasks, id)
   }
 
+  const handleEditTask = (newState) => {
+    props.actionsTask.editTask(newState)
+  }
+
   const handleRemoveTask = (id) => {
     props.actionsTask.removeItemOnTask(id)
   }
@@ -23,7 +27,8 @@ export const BacklogContainer = (props) => {
         headerStyle={headerStyle}
         tasks={props.tasks}
         callBackParent={id => handleUpdateTask(id)}
-        remove={id => handleRemoveTask(id)}
+        editTask={newState => handleEditTask(newState)}
+        removeTask={id => handleRemoveTask(id)}
       />
   )
 }
