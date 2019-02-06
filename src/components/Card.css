@@ -26,7 +26,13 @@ h2 {
   height: auto;
   border: 1px solid lightgrey;
 }
+
+.task-desc {
+  padding: 8px;
+}
+
 .task-action {
+  padding-left: 8px;
   margin-top: 40px;
 }
 .divider {
