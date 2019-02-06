@@ -2,6 +2,8 @@
 
 This is an collaboration tool that organizes your projects into boards.
 
+[Demo App](https://serene-allen-398f49.netlify.com/)
+
 ### Requirements:
   - React >= 16.6.0
   - NPM >= 8.x
