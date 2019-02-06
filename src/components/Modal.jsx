@@ -15,7 +15,7 @@ class ModalComponent extends React.Component {
       id: null,
       title: '',
       desc: '',
-      point: '',
+      point: 1,
       assignedTo: '',
       onEdit: false
     };
